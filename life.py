@@ -60,29 +60,28 @@ def main():
 
     # Initial Matrix
     globalMatrix = np.zeros([dimY,dimX],dtype = int)
-    globalMatrix[16][4] = 1
-    globalMatrix[16][5] = 1
-    globalMatrix[16][6] = 1
-    globalMatrix[14][4] = 1
-    globalMatrix[14][6] = 1
-
-    globalMatrix[0][30] = 1
-    globalMatrix[2][30] = 1
-    globalMatrix[1][31] = 1
-    globalMatrix[2][31] = 1
-    globalMatrix[2][29] = 1
     
     screen.fill(DEATH)
     drawGrid(screen)
 
     while carryOn:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 carryOn = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 runGame = not runGame
             if event.type == pygame.MOUSEBUTTONUP and runGame == False:
-                print(pygame.mouse.get_pos())
+                pos = pygame.mouse.get_pos()
+                x = int(pos[0]/cellSize)
+                y = int(pos[1]/cellSize)
+                if globalMatrix[y][x] == 0:
+                    globalMatrix[y][x] = 1
+                else:
+                    globalMatrix[y][x] = 0
+                screen.fill(DEATH)
+                drawMatrix(screen,globalMatrix)
+                drawGrid(screen)
         
         if runGame:
             curMatrix = getNextMatrix(globalMatrix)
