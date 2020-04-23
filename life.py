@@ -10,7 +10,7 @@ ALIVE = (222,222,222)
 
 # Define element sizes
 winSize = (1200,800)
-cellSize = 25
+cellSize = 20
 dimX = int(winSize[0]/cellSize)
 dimY = int(winSize[1]/cellSize)
 
@@ -90,7 +90,7 @@ def main():
             screen.fill(DEATH)
             drawMatrix(screen,curMatrix)
             drawGrid(screen)
-            time.sleep(0.1)
+            time.sleep(0.5)
 
         pygame.display.flip()
         clock.tick(60)
