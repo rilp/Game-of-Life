@@ -65,13 +65,12 @@ def main():
     drawGrid(screen)
 
     while carryOn:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 carryOn = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 runGame = not runGame
-            if event.type == pygame.MOUSEBUTTONUP and runGame == False:
+            if (event.type == pygame.MOUSEMOTION and not runGame and event.buttons[0] == 1) or (event.type == pygame.MOUSEBUTTONUP and not runGame):
                 pos = pygame.mouse.get_pos()
                 x = int(pos[0]/cellSize)
                 y = int(pos[1]/cellSize)
@@ -90,7 +89,7 @@ def main():
             screen.fill(DEATH)
             drawMatrix(screen,curMatrix)
             drawGrid(screen)
-            time.sleep(0.5)
+            time.sleep(0.25)
 
         pygame.display.flip()
         clock.tick(60)
