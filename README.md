@@ -1,10 +1,17 @@
-# Game of Life
-##### My first Python program
-This is a version of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+# Game of Life 
+##### My first Python program :beer:
+This is a version of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) written in Python.
 
-Commands:
+#### Game Commands:
+You can only edit cells if the game is in pause
 ```
 [Mouse Click] -> Toggle cell alive or death
 [Space] -> Pause/Play
 [Esc] -> Quit game
+```
+
+#### Requirements:
+```
+pygame -> pip install pygame
+numpy -> pip install numpy
 ```
