@@ -15,5 +15,4 @@ pygame -> pip install pygame
 numpy -> pip install numpy
 ```
 
-
-> P.D. *this is first Python program :beer:* 
+> P.D. *this is my first Python program :beer:* 
