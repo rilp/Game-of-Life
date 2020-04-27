@@ -1,12 +1,13 @@
 import pygame
 import numpy as np
 import time
+import random
 pygame.init()
 
 # Define some colors
 GRID = (155,155,155)
 DEATH = (70,70,70)
-ALIVE = (222,222,222)
+ALIVE = (219, 149, 57)
 
 # Define element sizes
 winSize = (1200,800)
@@ -38,11 +39,11 @@ def getNextMatrix(matrix:np.array) -> np.array:
                 nextMatrix[y][x] = 1
     return nextMatrix
 
-def drawMatrix(screen:pygame.Surface,matrix:np.array):
+def drawMatrix(screen:pygame.Surface,matrix:np.array,color):
     for y in range(dimY):
         for x in range(dimX):
             if matrix[y][x] == 1:
-                pygame.draw.rect(screen, ALIVE, [x*cellSize,y*cellSize,cellSize,cellSize])
+                pygame.draw.rect(screen, color, [x*cellSize,y*cellSize,cellSize,cellSize])
 
 def drawGrid(screen:pygame.Surface):
     pygame.draw.rect(screen,GRID,[0,0,winSize[0],winSize[1]],1)
@@ -79,7 +80,7 @@ def main():
                 else:
                     globalMatrix[y][x] = 0
                 screen.fill(DEATH)
-                drawMatrix(screen,globalMatrix)
+                drawMatrix(screen,globalMatrix,ALIVE)
                 drawGrid(screen)
         
         if runGame:
@@ -87,10 +88,11 @@ def main():
             globalMatrix = curMatrix
 
             screen.fill(DEATH)
-            drawMatrix(screen,curMatrix)
+            drawMatrix(screen,curMatrix,ALIVE)
             drawGrid(screen)
+            
             time.sleep(0.25)
-
+        
         pygame.display.flip()
         clock.tick(60)
 
